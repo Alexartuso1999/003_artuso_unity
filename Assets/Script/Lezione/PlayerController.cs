@@ -42,10 +42,11 @@ public class PlayerController : MonoBehaviour
         playerMovement.y = rb.velocity.y;
 
         // Applico translazione
-        //transform.Translate(playerMovement, Space.World);
+        transform.Translate(playerMovement, Space.World);
 
         //CharacterController.Move(playerMovement);
 
+        //salto
         if (Input.GetButtonDown("Jump") && isGrounded) //&& significa "e", || significa "o"
         {
             //rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);

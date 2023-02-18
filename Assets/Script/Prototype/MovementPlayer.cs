@@ -4,25 +4,46 @@ using UnityEngine;
 
 public class MovementPlayer : MonoBehaviour
 {
-    [SerializeField] public float speed = 5f;
-    [SerializeField] public float jumpHeight = 3f;
-    [SerializeField] Rigidbody rgb;
+    CharacterController controller;
+
+    public float speed = 5f;
+    
+    public float jumpHeight = 3f;
+    public float height = 0.01f;
+    public Transform groundCheck;
+    public LayerMask groundMask;
+    public Rigidbody rgb;
     bool isGround;
+    Vector3 velocity;
+
+    private void Start()
+    {
+        controller = gameObject.GetComponent<CharacterController>();
+    }
 
     private void Update()
     {
+        //movimento asse x e z
         float xMove = Input.GetAxis("Horizontal");
         float zMove = Input.GetAxis("Vertical");
+        Vector3 Move = transform.right * xMove + transform.forward * zMove;
+        controller.Move(Move * speed * Time.deltaTime);        
 
-        Vector3 Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed * Time.deltaTime;
-
-        transform.Translate(Move, Space.World);
+        //salto asse y
+        isGround = Physics.CheckSphere(groundCheck.position, height, groundMask);
         Move.y = rgb.velocity.y;
-
+       
+        if(isGround && velocity.y < 0)
+        {
+            velocity.y = -0.5f;
+        }
         if (Input.GetButtonDown("Jump") && isGround)
         {
-            Move.y += Mathf.Sqrt(jumpHeight * -2f * (-9.81f));
+           velocity.y += Mathf.Sqrt(jumpHeight * -2f * (-9.81f));
         }
+
+        velocity.y += (-9.81f) * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
    

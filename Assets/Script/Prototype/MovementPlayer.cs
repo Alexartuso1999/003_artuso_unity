@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MovementPlayer : MonoBehaviour
 {
-    CharacterController controller;
+    public CharacterController controller;
 
     public float speed = 5f;
-    
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVel;
+      
     public float jumpHeight = 3f;
     public float height = 0.01f;
     public Transform groundCheck;
@@ -24,18 +26,25 @@ public class MovementPlayer : MonoBehaviour
     private void Update()
     {
         //movimento asse x e z
-        float xMove = Input.GetAxis("Horizontal");
-        float zMove = Input.GetAxis("Vertical");
-        Vector3 Move = transform.right * xMove + transform.forward * zMove;
-        controller.Move(Move * speed * Time.deltaTime);        
+        float xMove = Input.GetAxisRaw("Horizontal");
+        float zMove = Input.GetAxisRaw("Vertical");
+        Vector3 Move = new Vector3(xMove, 0f, zMove).normalized * speed;
 
+        if(Move.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(Move.x, Move.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            controller.Move(Move * speed * Time.deltaTime);
+        }
+        
         //salto asse y
         isGround = Physics.CheckSphere(groundCheck.position, height, groundMask);
         Move.y = rgb.velocity.y;
        
         if(isGround && velocity.y < 0)
         {
-            velocity.y = -0.5f;
+            velocity.y = -10f;
         }
         if (Input.GetButtonDown("Jump") && isGround)
         {
@@ -46,5 +55,11 @@ public class MovementPlayer : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-   
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("grab");
+        }
+    }
 }

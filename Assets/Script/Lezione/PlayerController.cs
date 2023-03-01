@@ -37,6 +37,12 @@ public class PlayerController : MonoBehaviour
 
         //vettore movimento
         Vector3 playerMovement = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;//* Time.deltaTime;
+
+        //se la velocità non è nulla, ruoto il chracter per la direzione della velocità stessa 
+        if(playerMovement.magnitude != 0)
+        {
+        transform.forward = playerMovement;
+        }
         
         //applica velocity verticale al vetore movimento
         playerMovement.y = rb.velocity.y;
@@ -57,16 +63,25 @@ public class PlayerController : MonoBehaviour
         rb.velocity = playerMovement;
 
 
-        Debug.DrawRay(transform.position + Vector3.up * 0.5f, -transform.up * 10, Color.red);
+        //Debug.DrawRay(transform.position + Vector3.up * 0.5f, -transform.up * 10, Color.red);
 
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position + Vector3.up * 0.5f, -transform.up, out hit, 10, groundMask))
-        {
-            Debug.Log("Colpito");
-        }
+        //RaycastHit hit;
+        //if(Physics.Raycast(transform.position + Vector3.up * 0.5f, -transform.up, out hit, 10, groundMask))
+        //{
+        //    Debug.Log("Colpito");
+        //}
 
         //Physics.SphereCast
         //Physics.OverlapSphere
+
+        if (Physics.CheckSphere(transform.position, 0.4f, groundMask))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void FixedUpdate() //qui gira la fisica
@@ -83,10 +98,10 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
         
-        if(other.transform.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        //if(other.transform.CompareTag("Ground"))
+        //{
+        //    isGrounded = true;
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -96,4 +111,14 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(groundCheck.position, 0.4f);
+    //}
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(groundCheck.position, 0.4f);
+    //}
 }

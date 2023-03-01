@@ -8,10 +8,9 @@ public class Enemy : MonoBehaviour
     public Rigidbody rb;
     public LayerMask wallMask;
    
-    private void FixedUpdate()
+    private void Update()
     {
         transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-       // rb.AddForce(transform.forward * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,9 +18,11 @@ public class Enemy : MonoBehaviour
         if (other.transform.CompareTag("Wall"))
         {
             gameObject.transform.Rotate(0, 180, 0);
+
+            
             //transform.position += new Vector3(0, 0, -speed * Time.deltaTime);
             //non riesco a farlo andare nella direzione inversa dio lupo!
-            rb.AddForce(transform.forward * speed * Time.deltaTime);
+            //rb.AddForce(transform.forward * speed * Time.deltaTime);
         }
     }
 }

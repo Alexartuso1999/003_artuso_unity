@@ -7,6 +7,7 @@ public class MovementPlayer : MonoBehaviour
     //public CharacterController controller;
 
     public float speed = 5f;
+    public float dashAttack = 2f;
       
     public float jumpHeight = 3f;
     public float height = 0.3f;
@@ -39,13 +40,16 @@ public class MovementPlayer : MonoBehaviour
         }
 
         rgb.velocity = Move;
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("grab");
+            Vector3 dash = Move * dashAttack;
+            rgb.velocity = dash;
+
+            if (CompareTag("Enemy") && dash.magnitude > 0)
+            {
+                Debug.Log("E");
+            }
         }
     }
 

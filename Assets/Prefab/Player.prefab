@@ -171,7 +171,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8335661766312509891}
-  - component: {fileID: 8335661766312509894}
   - component: {fileID: 8335661766312509892}
   - component: {fileID: 8335661766312509895}
   - component: {fileID: 8335661766312509890}
@@ -199,24 +198,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &8335661766312509894
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8335661766312509888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0
-  m_SkinWidth: 0.0001
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &8335661766312509892
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -259,11 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b98cfc9f9c25448b76914b7f6b7462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 8335661766312509894}
-  speed: 3
-  turnSmoothTime: 2
+  player: {fileID: 8335661766312509888}
+  speed: 6
+  dashAttack: 15
   jumpHeight: 3
-  height: 0.01
+  height: 0.3
   groundCheck: {fileID: 8335661766463175467}
   groundMask:
     serializedVersion: 2

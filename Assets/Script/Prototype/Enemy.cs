@@ -18,8 +18,7 @@ public class Enemy : MonoBehaviour
         if (other.transform.CompareTag("Wall"))
         {
             gameObject.transform.Rotate(0, 180, 0);
-
-            
+                       
             //transform.position += new Vector3(0, 0, -speed * Time.deltaTime);
             //non riesco a farlo andare nella direzione inversa dio lupo!
             //rb.AddForce(transform.forward * speed * Time.deltaTime);

@@ -12,9 +12,10 @@ public class MovementPlayer : MonoBehaviour
     public float height = 0.3f;
     public Transform groundCheck;
     public LayerMask groundMask;
+    public LayerMask grabMask;
     public Rigidbody rgb;
     bool isGround;
-    bool isAttack;
+    //bool isAttack;
 
     private void Update()
     {
@@ -44,34 +45,36 @@ public class MovementPlayer : MonoBehaviour
         //dash attack
         if (Input.GetKeyDown(KeyCode.E))
         {
-            isAttack = true;
+            //isAttack = true;
             Vector3 dash = Move * dashAttack;
             rgb.velocity = dash;
-            isAttack = false;
+            //isAttack = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //eliminare enemy o player
-        if (other.CompareTag("Enemy") && isAttack)
+        if(other.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.E))/*isAttack)*/
         {
             Debug.Log("Enemy eliminato");
             Destroy(other.gameObject);
         }
-        else
+        else if(other.CompareTag("Enemy"))
         {
-            Debug.Log("Player eliminato");
-            Destroy(player);
-        }
-        else if(isAttack && other.CompareTag("Chest"))
-        {
-            Debug.Log("Cassa eliminata");
-            //Destroy(other.gameObject);
+           Debug.Log("Player eliminato");
+           Destroy(player);
         }
     }
 
-   
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Chest");
+            Destroy(other.gameObject);
+        }   
+    }
 
     private void OnDrawGizmos()
     {

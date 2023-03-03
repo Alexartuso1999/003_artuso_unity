@@ -9,6 +9,7 @@ TagManager:
   - Chest
   - Wall
   - Enemy
+  - Grab
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ground
   - Enemy
   - Wall
-  - 
+  - Chest
   - 
   - 
   - 

@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Enemy
   - Grab
+  - Camera
+  - Dead
   layers:
   - Default
   - TransparentFX

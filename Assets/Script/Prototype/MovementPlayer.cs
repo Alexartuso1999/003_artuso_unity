@@ -7,7 +7,7 @@ public class MovementPlayer : MonoBehaviour
     public GameObject player;
     public float speed = 5f;
     public float dashAttack = 2f;
-      
+
     public float jumpHeight = 3f;
     public float height = 0.3f;
     public Transform groundCheck;
@@ -15,7 +15,7 @@ public class MovementPlayer : MonoBehaviour
     public LayerMask grabMask;
     public Rigidbody rgb;
     bool isGround;
-    //bool isAttack;
+    bool isAttack;
 
     private void Update()
     {
@@ -25,7 +25,7 @@ public class MovementPlayer : MonoBehaviour
         Vector3 Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;
 
         //il player si gira a seconda della direzione
-        if(Move.magnitude != 0)
+        if (Move.magnitude != 0)
         {
             transform.forward = Move;
         }
@@ -34,46 +34,61 @@ public class MovementPlayer : MonoBehaviour
 
         //salto asse y
         isGround = Physics.CheckSphere(groundCheck.position, height, groundMask);
-       
+
         if (Input.GetButtonDown("Jump") && isGround)
         {
-           Move.y += Mathf.Sqrt(jumpHeight * -2f * (-9.81f));
+            Move.y += Mathf.Sqrt(jumpHeight * -2f * (-9.81f));
         }
-
-        rgb.velocity = Move;
 
         //dash attack
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //isAttack = true;
+            isAttack = true;
+        }
+        else
+        {
+            isAttack = false;
+        }
+
+        if (isAttack == false)
+        {
+            rgb.velocity = Move;
+        }
+
+        if (isAttack == true)
+        {
             Vector3 dash = Move * dashAttack;
             rgb.velocity = dash;
-            //isAttack = false;
         }
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         //eliminare enemy o player
-        if(other.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.E))/*isAttack)*/
+        if (collision.collider.CompareTag("Enemy") && isAttack == true)
         {
-            Debug.Log("Enemy eliminato");
-            Destroy(other.gameObject);
+            Destroy(collision.collider.gameObject);
         }
-        else if(other.CompareTag("Enemy"))
+        else if (collision.collider.CompareTag("Enemy"))
         {
-           Debug.Log("Player eliminato");
-           Destroy(player);
+            Destroy(player);
+        }
+
+        //Death zone
+        if (collision.collider.CompareTag("Dead"))
+        {
+            Destroy(player);
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Chest") && isAttack == true)
         {
             Debug.Log("Chest");
             Destroy(other.gameObject);
-        }   
+        }
     }
 
     private void OnDrawGizmos()

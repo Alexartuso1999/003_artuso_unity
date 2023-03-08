@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MovementPlayer : MonoBehaviour
 {
-    public GameObject player;
     public float speed = 5f;
     public float dashAttack = 2f;
     public int Prototype;
@@ -14,17 +13,27 @@ public class MovementPlayer : MonoBehaviour
     public float height = 0.3f;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public LayerMask grabMask;
     public Rigidbody rgb;
+
     bool isGround;
     bool isAttack;
+    bool canClimb;
 
     private void Update()
     {
         //movimento asse x e z
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
-        Vector3 Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;
+        Vector3 Move = new Vector3();
+
+        if (canClimb == false)
+        {
+            Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;
+        }
+        else
+        {
+            Move = Vector3.up * zMove * speed;
+        }
 
         //il player si gira a seconda della direzione
         if (Move.magnitude != 0)
@@ -84,11 +93,16 @@ public class MovementPlayer : MonoBehaviour
             //Destroy(player);
             SceneManager.LoadScene(Prototype);
         }
-       
+
         //Win zone
         if (collision.collider.CompareTag("Win"))
         {
             SceneManager.LoadScene("Win");
+        }
+
+        if (collision.collider.CompareTag("Climb"))
+        {
+            canClimb = true;
         }
     }
 
@@ -96,7 +110,6 @@ public class MovementPlayer : MonoBehaviour
     {
         if (other.CompareTag("Chest") && isAttack == true)
         {
-            Debug.Log("Chest");
             Destroy(other.gameObject);
         }
     }

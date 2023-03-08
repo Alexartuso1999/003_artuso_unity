@@ -9,10 +9,10 @@ TagManager:
   - Chest
   - Wall
   - Enemy
-  - Grab
   - Camera
   - Dead
   - Win
+  - Climb
   layers:
   - Default
   - TransparentFX

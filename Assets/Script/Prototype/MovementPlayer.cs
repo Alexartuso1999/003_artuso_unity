@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovementPlayer : MonoBehaviour
 {
     public GameObject player;
     public float speed = 5f;
     public float dashAttack = 2f;
+    public int Prototype;
 
     public float jumpHeight = 3f;
     public float height = 0.3f;
@@ -72,13 +74,21 @@ public class MovementPlayer : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Enemy"))
         {
-            Destroy(player);
+            //Destroy(player);
+            SceneManager.LoadScene(Prototype);
         }
 
         //Death zone
         if (collision.collider.CompareTag("Dead"))
         {
-            Destroy(player);
+            //Destroy(player);
+            SceneManager.LoadScene(Prototype);
+        }
+       
+        //Win zone
+        if (collision.collider.CompareTag("Win"))
+        {
+            SceneManager.LoadScene("Win");
         }
     }
 

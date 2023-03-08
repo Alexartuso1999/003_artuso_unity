@@ -12,6 +12,7 @@ TagManager:
   - Grab
   - Camera
   - Dead
+  - Win
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,6 @@ public class MovementPlayer : MonoBehaviour
 
     bool isGround;
     bool isAttack;
-    bool canClimb;
 
     private void Update()
     {
@@ -26,14 +25,7 @@ public class MovementPlayer : MonoBehaviour
         float zMove = Input.GetAxisRaw("Vertical");
         Vector3 Move = new Vector3();
 
-        if (canClimb == false)
-        {
-            Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;
-        }
-        else
-        {
-            Move = Vector3.up * zMove * speed;
-        }
+        Move = (Vector3.right * xMove + Vector3.forward * zMove).normalized * speed;
 
         //il player si gira a seconda della direzione
         if (Move.magnitude != 0)
@@ -98,11 +90,6 @@ public class MovementPlayer : MonoBehaviour
         if (collision.collider.CompareTag("Win"))
         {
             SceneManager.LoadScene("Win");
-        }
-
-        if (collision.collider.CompareTag("Climb"))
-        {
-            canClimb = true;
         }
     }
 

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6952553943399814167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4336613353146961768}
+  m_Layer: 0
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4336613353146961768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952553943399814167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8335661766312509891}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8335661765360767373
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65fab83ab2a027c4784fd553fe60ed2a, type: 2}
+  - {fileID: 2100000, guid: ecc389ba359cef44c9f53a91e2c2a237, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,6 +204,7 @@ GameObject:
   - component: {fileID: 8335661766312509892}
   - component: {fileID: 8335661766312509895}
   - component: {fileID: 8335661766312509890}
+  - component: {fileID: 220914439}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -195,6 +226,7 @@ Transform:
   - {fileID: 8335661765846341893}
   - {fileID: 8335661766463175467}
   - {fileID: 8335661765360767372}
+  - {fileID: 4336613353146961768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -240,19 +272,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b98cfc9f9c25448b76914b7f6b7462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8335661766312509888}
   speed: 6
   dashAttack: 20
-  jumpHeight: 4
+  Prototype: 0
+  jumpHeight: 4.5
   height: 0.3
   groundCheck: {fileID: 8335661766463175467}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  grabMask:
-    serializedVersion: 2
-    m_Bits: 0
   rgb: {fileID: 8335661766312509895}
+--- !u!114 &220914439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8335661766312509888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7c3bcd0d7c1e64a97766500c2e27e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  height: 0.3
+  wallCheck: {fileID: 4336613353146961768}
+  rb: {fileID: 8335661766312509895}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8335661766463175464
 GameObject:
   m_ObjectHideFlags: 0

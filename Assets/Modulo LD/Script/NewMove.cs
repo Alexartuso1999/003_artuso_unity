@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class NewMove : MonoBehaviour
 {
-    CharacterController characterController;
+    [HideInInspector] public Rigidbody rgb;
 
-    public float speed = 5f;
+    public float moveSpeed = 3f;
+    private float moveHorizontal;
+    public float maxVelocity = 5;
 
-    private void Awake()
+    private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        rgb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        characterController.Move(transform.forward * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
+        rgb.velocity = Vector3.ClampMagnitude(rgb.velocity, maxVelocity);
+    }
+
+    private void FixedUpdate()
+    {
+        if(moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+        {
+            rgb.AddForce(transform.forward * moveHorizontal * moveSpeed, ForceMode.Acceleration);
+        }
     }
 }

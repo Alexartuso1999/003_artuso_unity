@@ -24,8 +24,6 @@ public class NewMove : MonoBehaviour
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         rgb.velocity = Vector3.ClampMagnitude(rgb.velocity, maxVelocity);
-
-        //CheckLight();
     }
 
     private void FixedUpdate()
@@ -35,18 +33,4 @@ public class NewMove : MonoBehaviour
             rgb.AddForce(transform.forward * moveHorizontal * moveSpeed, ForceMode.Acceleration);
         }
     }
-
-    //void CheckLight()
-    //{
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(transform.position, transform.right * (-1f), out hit, rayDistance, layer))
-    //    {
-    //        Debug.DrawRay(transform.position, transform.right * (-1f), Color.red, rayDistance);
-    //        GameObject.Destroy(gameObject);
-    //    }
-    //    else if (Physics.Raycast(transform.position, transform.right * (-1f), out hit, rayDistance, layerWall))
-    //    {
-    //        Debug.Log("nonColpito");
-    //    }
-    //}
 }

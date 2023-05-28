@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Light : MonoBehaviour
 {
+    public GameObject player;
     public float speed = 5f;
     public float distance = 20f;
    
@@ -20,10 +21,10 @@ public class Light : MonoBehaviour
     private void LightHit()
     {
         Ray forwardRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-
+      
         if (Physics.Raycast(forwardRay, distance, layerPlayer))
         {
-            Debug.Log("colpito");
+            Destroy(player);
         }
         else if(Physics.Raycast(forwardRay, distance, layerWall))
         {

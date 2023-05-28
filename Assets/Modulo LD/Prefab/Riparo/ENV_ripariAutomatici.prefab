@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3465465050611836257}
   - component: {fileID: 2923054013538741346}
   - component: {fileID: 7361371561427217703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1992165539250742545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ENV_ripariAutomatici
   m_TagString: Untagged
   m_Icon: {fileID: 0}

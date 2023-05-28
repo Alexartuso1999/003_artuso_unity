@@ -170,6 +170,9 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1024
+  layerWall:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!54 &6906501223063269251
 Rigidbody:
   m_ObjectHideFlags: 0

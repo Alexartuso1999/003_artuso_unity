@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 553527376890832737}
   - component: {fileID: 8724576658198963381}
   - component: {fileID: 2049586773393315727}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 877000314712992893}
   - component: {fileID: 4059619298656174249}
   - component: {fileID: 1881264799474049828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2181465703334219204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ENV_riparoAngolo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

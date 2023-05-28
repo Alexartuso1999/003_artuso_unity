@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3995343975746676889}
   - component: {fileID: 3821671355268331976}
   - component: {fileID: 6799095942902964878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2862858775378885186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RIP_murettoPiccolo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 9099006844470329280}
   - component: {fileID: 3315589914452361729}
   - component: {fileID: 1157426711195288267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

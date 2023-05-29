@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3943078255773997990}
   - component: {fileID: 1767275324275557525}
   - component: {fileID: 5702669974357654403}
+  - component: {fileID: 2429828700362366344}
   m_Layer: 0
   m_Name: INT_cuboPesante
   m_TagString: Untagged
@@ -315,3 +316,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
+--- !u!65 &2429828700362366344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756834278568609154}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 2}
+  m_Center: {x: 2, y: 2, z: -1}

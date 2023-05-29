@@ -7,9 +7,8 @@ public class Light : MonoBehaviour
     public GameObject player;
     public float speed = 5f;
     public float distance = 20f;
-   
-    public LayerMask layerPlayer;
-    public LayerMask layerWall;
+
+    public LayerMask mask;
 
     private void Update()
     {
@@ -20,15 +19,14 @@ public class Light : MonoBehaviour
 
     private void LightHit()
     {
-        Ray forwardRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-      
-        if (Physics.Raycast(forwardRay, distance, layerPlayer))
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distance, mask))
         {
-            Destroy(player);
-        }
-        else if(Physics.Raycast(forwardRay, distance, layerWall))
-        {
-            Debug.Log("nonColpito");
+            if (hit.transform.CompareTag("Player"))
+            {
+                Destroy(player);
+            }
         }
     }
 }

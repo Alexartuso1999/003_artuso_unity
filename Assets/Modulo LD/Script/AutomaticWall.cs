@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class AutomaticWall : MonoBehaviour
 {
-    public GameObject cube;
     public float speed = 5f;
-    public Transform [] waypoints;
-    //public Transform waypoint1;
+  
+    private Vector3 move;
 
+    private void Start()
+    {
+        move = transform.TransformDirection(Vector3.right);
+    }
     private void Update()
     {
-        transform.Translate(transform.TransformDirection(Vector3.right) * speed * Time.deltaTime);
+        transform.Translate(move * speed * Time.deltaTime);
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        move *= -1; //è la stessa cosa di scrive <move = move * (-1)>;
+    }
 }

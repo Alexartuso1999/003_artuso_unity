@@ -210,6 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2982603987719904196}
+  - component: {fileID: 1455890794935015422}
   m_Layer: 0
   m_Name: Light_01
   m_TagString: Untagged
@@ -232,6 +233,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1455890794935015422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982603987719904197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ffc7389991519429ad0095ef872477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigerTimer: 5
+  mesh: {fileID: 2982603988705255579}
 --- !u!1 &2982603987848018342
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +366,6 @@ GameObject:
   - component: {fileID: 2982603988705255578}
   - component: {fileID: 2982603988705255559}
   - component: {fileID: 2982603988705255556}
-  - component: {fileID: 4245202637339307656}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -425,15 +439,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4245202637339307656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982603988705255579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8ffc7389991519429ad0095ef872477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

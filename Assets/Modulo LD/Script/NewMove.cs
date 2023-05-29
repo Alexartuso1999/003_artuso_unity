@@ -6,14 +6,13 @@ public class NewMove : MonoBehaviour
 {
     [HideInInspector] public Rigidbody rgb;
 
-    public float moveSpeed = 3f;
-    private float moveHorizontal;
-    public float maxVelocity = 5;
+    [SerializeField] float moveSpeed = 3f;
+    [SerializeField] float maxVelocity = 5f;
+    [SerializeField] float distance = 5f;
 
-    Ray ray;
-    public float rayDistance = 5f;
-    public LayerMask layer;
-    public LayerMask layerWall;
+    [SerializeField] LayerMask layerWall;
+    
+    private float moveHorizontal;
 
     private void Start()
     {
@@ -24,6 +23,8 @@ public class NewMove : MonoBehaviour
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         rgb.velocity = Vector3.ClampMagnitude(rgb.velocity, maxVelocity);
+
+        RayLight();
     }
 
     private void FixedUpdate()
@@ -32,5 +33,21 @@ public class NewMove : MonoBehaviour
         {
             rgb.AddForce(transform.forward * moveHorizontal * moveSpeed, ForceMode.Acceleration);
         }
+    }
+
+    private void RayLight()
+    {
+        Ray ray = new Ray(transform.position, -transform.right);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit, distance, layerWall))
+        {
+            if (hit.transform.CompareTag("Light"))
+            {
+                Debug.Log("muori");
+                Destroy(gameObject);
+            }
+        }
+
     }
 }

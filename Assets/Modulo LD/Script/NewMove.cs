@@ -11,7 +11,8 @@ public class NewMove : MonoBehaviour
     [SerializeField] float distance = 5f;
 
     [SerializeField] LayerMask layerWall;
-    
+    [SerializeField] Vector3 waypoint;
+   
     private float moveHorizontal;
 
     private void Start()
@@ -44,10 +45,8 @@ public class NewMove : MonoBehaviour
         {
             if (hit.transform.CompareTag("Light"))
             {
-                Debug.Log("muori");
-                Destroy(gameObject);
+                transform.position = waypoint;
             }
         }
-
     }
 }

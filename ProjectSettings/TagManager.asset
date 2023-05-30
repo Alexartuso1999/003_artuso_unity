@@ -14,6 +14,7 @@ TagManager:
   - Win
   - Climb
   - Light
+  - Drag
   layers:
   - Default
   - TransparentFX

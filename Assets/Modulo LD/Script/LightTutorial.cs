@@ -6,7 +6,7 @@ public class LightTutorial : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Drag"))
         {
             Destroy(other.gameObject);
         }

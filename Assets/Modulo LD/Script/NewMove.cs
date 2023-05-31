@@ -10,14 +10,13 @@ public class NewMove : MonoBehaviour
     [SerializeField] float maxVelocity = 5f;
     [SerializeField] float distance = 5f;
 
-    [SerializeField] LayerMask layerWall;
-    [SerializeField] Vector3 waypoint;
+    [SerializeField] GameObject player;
 
     private float moveHorizontal;
-    private float drag;
 
     private void Start()
     {
+        transform.position = transform.position;
         rgb = GetComponent<Rigidbody>();
     }
 
@@ -25,9 +24,6 @@ public class NewMove : MonoBehaviour
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         rgb.velocity = Vector3.ClampMagnitude(rgb.velocity, maxVelocity);
-
-        RayLight();
-
     }
 
     private void FixedUpdate()
@@ -38,23 +34,9 @@ public class NewMove : MonoBehaviour
         }
     }
 
-    private void RayLight()
-    {
-        Ray ray = new Ray(transform.position, -transform.right);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, distance, layerWall))
-        {
-            if (hit.transform.CompareTag("Light"))
-            {
-                transform.position = waypoint;
-            }
-        }
-    }
-
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Drag") || other.CompareTag("Player"))
+        if (other.CompareTag("Drag"))
         {
             if (Input.GetKey(KeyCode.E))
             {

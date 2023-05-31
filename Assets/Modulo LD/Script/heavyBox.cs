@@ -7,6 +7,11 @@ public class heavyBox : MonoBehaviour
     [SerializeField] float speed = 5f;
     private Vector3 move;
 
+    private void Update()
+    {
+        transform.Translate(move * speed * Time.deltaTime);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,10 +24,7 @@ public class heavyBox : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             move *= -1;
+            transform.position = transform.position;
         }
-    }
-    private void Update()
-    {
-        transform.Translate(move * speed * Time.deltaTime);
     }
 }

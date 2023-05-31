@@ -10,6 +10,8 @@ public class Light : MonoBehaviour
 
     public LayerMask mask;
 
+    [SerializeField] GameObject checkpoint;
+
     private void Update()
     {
         transform.Rotate(-Vector3.up * speed * Time.deltaTime);

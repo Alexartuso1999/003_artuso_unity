@@ -27,7 +27,7 @@ public class Light : MonoBehaviour
         {
             if (hit.transform.CompareTag("Player"))
             {
-                Destroy(player);
+                player.transform.position = checkpoint.transform.position;
             }
         }
     }

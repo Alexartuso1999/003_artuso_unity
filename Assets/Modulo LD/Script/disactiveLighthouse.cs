@@ -8,12 +8,9 @@ public class disactiveLighthouse : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                Lighthouse.SetActive(false);
-            }
+            Lighthouse.SetActive(false);
         }
     }
 }

@@ -10,6 +10,7 @@ public class turn : MonoBehaviour
         {
             other.GetComponent<Rigidbody>().velocity = Vector3.zero;
             other.transform.Rotate(new Vector3(0, -90, 0));
+            gameObject.SetActive(false);
         }
     }
 }

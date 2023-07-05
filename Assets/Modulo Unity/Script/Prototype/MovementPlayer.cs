@@ -99,6 +99,14 @@ public class MovementPlayer : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+       
+        if (other.CompareTag("Drag"))
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                other.transform.position = transform.position;
+            }
+        }
     }
 
     private void OnDrawGizmos()

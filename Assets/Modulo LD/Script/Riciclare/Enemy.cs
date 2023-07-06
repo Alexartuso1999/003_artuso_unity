@@ -6,24 +6,20 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 5f;
     public Rigidbody rb;
-    //public LayerMask wallMask;
     Vector3 Move;
     bool isHit;
    
     private void Update()
     {
-        //isWall = false;
-        //transform.position += new Vector3(0, 0, speed * Time.deltaTime);
         if(isHit == false)
         {
-            Move = Vector3.right * speed * Time.deltaTime;
+            Move = Vector3.forward * speed * Time.deltaTime;
             transform.Translate(Move, Space.World);
         } 
         else 
         {
-            Move = -Vector3.right * speed * Time.deltaTime;
+            Move = -Vector3.forward * speed * Time.deltaTime;
             transform.Translate(Move, Space.World);
-            //isHit = false;
         }
     }
 

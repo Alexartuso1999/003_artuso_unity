@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MovementPlayer : MonoBehaviour
 {
+
     public float speed = 5f;
     public float dashAttack = 2f;
     public int Prototype;
@@ -99,12 +100,12 @@ public class MovementPlayer : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-       
+
         if (other.CompareTag("Drag"))
         {
             if (Input.GetKey(KeyCode.E))
             {
-                other.transform.position = transform.position;
+                other.transform.position = -transform.position;
             }
         }
     }

@@ -5,32 +5,18 @@ using UnityEngine;
 public class ClimbPlayer : MonoBehaviour
 {
     public float speed = 5f;
-    public float height = 0.3f;
-    bool canClimb;
-    bool isWall;
-    public Transform wallCheck;
-    public Rigidbody rb;
+    public float distance = 0.5f;
     public LayerMask whatIsWall;
 
     private void Update()
     {
-        float yMove = Input.GetAxis("Vertical");
+        RaycastHit climb;
+        float yMove = Input.GetAxis("Horizontal");
 
-        isWall = Physics.CheckSphere(wallCheck.position, height, whatIsWall);
-
-        if (isWall == true)
+        if (Physics.Raycast(transform.position, transform.forward, out climb, distance, whatIsWall, QueryTriggerInteraction.Collide))
         {
-            canClimb = true;
-        }
-        else
-        {
-            canClimb = false;
-        }
-
-        if(canClimb == true)
-        {
-            Vector3 Move = Vector3.up * yMove * speed;
-            rb.velocity = Move;
+            Debug.Log("muori pd");
+            transform.Translate(Vector3.up * speed * yMove * Time.deltaTime);
         }
     }
 }
